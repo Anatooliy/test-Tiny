@@ -1,0 +1,7 @@
+testTiny/.vs/
+testTiny/.idea/
+testTiny/testTiny/obj/
+testTiny/testTiny/bin/
+testTiny/packages/
+testTiny/node_modules/
+testTiny/src/libs/
