@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+@model testTiny.Models.TinyModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TinyMCE</title>    
+    <script src="~/scripts/tinymce/tinymce.min.js"></script>    
+    <script type="text/javascript">        
+        tinyMCE.init({            
+            mode: "textareas",
+            theme: "modern",
+            toolbar1: 'undo redo | mybutton',     
+            
+            menubar: false,
+            setup: function (editor) {
+                editor.addButton('mybutton', {
+                    type: 'listbox',
+                    text: 'Insert variable',
+                    icon: false,
+                    onselect: function (e) {
+                        editor.insertContent(this.value());
+                    },
+                    values: [
+                      { text: 'First Name', value: '{First Name}' },
+                      { text: 'Last Name', value: '{Last Name}' },
+                      { text: 'Title', value: '{Title}' },
+                      { text: 'Company', value: '{Company}' },
+                      { text: 'Email', value: '{Email}' },
+                      { text: 'City', value: '{City}' },
+                      { text: 'State', value: '{State}' },
+                      { text: 'Country', value: '{Country}' },
+                      
+                    ],
+                    /*onPostRender: function () {
+                        // Select the second item by default
+                        this.value('Insert variable');
+                    }*/
+                });
+            },
+        });
+    </script>
+</head>
+<body>    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            @Html.TextAreaFor(model => model.HtmlContent)            
+        </div>
+    }
+</body>
+</html>
+
